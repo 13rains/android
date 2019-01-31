@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity {
         button_width = Width/6;
         leftKey = Bitmap.createScaledBitmap(leftKey, button_width, button_width, true);
 
-        leftKey = BitmapFactory.decodeResource(getResources(), R.drawable.rightkey);
+        rightKey = BitmapFactory.decodeResource(getResources(), R.drawable.rightkey);
         rightKey_x = Width*7/9;
         rightKey_y = Height*7/9;
 
-        leftKey = Bitmap.createScaledBitmap(leftKey, button_width, button_width, true);
+        rightKey = Bitmap.createScaledBitmap(rightKey, button_width, button_width, true);
 
         screen = BitmapFactory.decodeResource(getResources(), R.drawable.screen);
         screen = Bitmap.createScaledBitmap(screen, Width, Height, true);
@@ -69,7 +69,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onDraw(Canvas canvas) {
             //super.onDraw(canvas);
+
             Paint p1 = new Paint();
+
             p1.setColor(Color.RED);
             p1.setTextSize(50);
             canvas.drawBitmap(screen, 0, 0, p1);
@@ -77,12 +79,32 @@ public class MainActivity extends AppCompatActivity {
             canvas.drawBitmap(spaceship, spaceship_x, spaceship_y, p1);
             canvas.drawBitmap(leftKey, leftKey_x, leftKey_y, p1);
             canvas.drawBitmap(rightKey, rightKey_x, rightKey_y, p1);
-            //count++;
+
         }
 
         @Override
         public boolean onTouchEvent(MotionEvent event) {
-            return super.onTouchEvent(event);
+            int x = 0, y = 0;
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN
+                    || event.getAction() == MotionEvent.ACTION_MOVE) {
+                x = (int)event.getX();
+                y = (int)event.getY();
+            }
+
+            if ((x > leftKey_x) && (x < leftKey_x + button_width)
+                    && (y > leftKey_y) && (y < leftKey_y + button_width)) {
+                spaceship_x -= 20;
+            }
+
+            if ((x > rightKey_x) && (x < rightKey_y + button_width)
+                    && (y > rightKey_y) && (y < rightKey_y + button_width)) {
+                spaceship_x += 20;
+            }
+             invalidate();
+
+            //return super.onTouchEvent(event);
+            return true;
         }
     }
 }
