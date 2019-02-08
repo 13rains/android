@@ -1,4 +1,4 @@
-package com.a13rain.unodir.waterlife;
+package com.a13rain.unodir.aqualife;
 
 
 import android.os.Bundle;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //add this line to display menu1 when the activity is loaded
-        displaySelectedScreen(R.id.nav_gallery);
+        displaySelectedScreen(R.id.nav_home);
     }
 
     @Override
@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         switch (id) {
-            case R.id.action_settings:{
-                 return true;
+            case R.id.action_settings: {
+                return true;
             }
             case R.id.action_add_aquarium: {
                 displaySelectedScreen(R.id.action_add_aquarium);
@@ -105,27 +105,31 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void displaySelectedScreen(int itemId)
-    {
+    private void displaySelectedScreen(int itemId) {
         //creating fragment object
         Fragment fragment = null;
 
-        switch( itemId )
-        {
-            case R.id.nav_gallery:
-                if (mFragGallary == null ) {
-                    mFragGallary = new Gallary();
+        switch (itemId) {
+            case R.id.nav_home:
+                if (mFragGallary == null) {
+                    mFragGallary = new HomeFragment();
                 }
                 fragment = mFragGallary;
                 break;
-            case R.id.nav_manage:
-                if (mFragSettings == null){
+            case R.id.nav_tools:
+                if (mFragSettings == null) {
+                    mFragSettings = new Settings();
+                }
+                fragment = mFragSettings;
+                break;
+            case R.id.nav_setting:
+                if (mFragSettings == null) {
                     mFragSettings = new Settings();
                 }
                 fragment = mFragSettings;
                 break;
             case R.id.action_add_aquarium:
-                if ( mAddAquarium == null ){
+                if (mAddAquarium == null) {
                     mAddAquarium = new AddAquarium();
                 }
                 fragment = mAddAquarium;

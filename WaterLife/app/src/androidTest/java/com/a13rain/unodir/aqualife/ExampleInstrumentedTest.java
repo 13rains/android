@@ -1,4 +1,4 @@
-package com.a13rain.unodir.waterlife;
+package com.a13rain.unodir.aqualife;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.a13rain.unodir.waterlife", appContext.getPackageName());
+        assertEquals("com.a13rain.unodir.aqualife", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.a13rain.unodir.waterlife;
+package com.a13rain.unodir.aqualife;
 
 
 import android.os.Bundle;
